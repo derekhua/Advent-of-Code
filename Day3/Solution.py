@@ -33,7 +33,7 @@ def main():
 		elif c == 'v':
 			y -= 1
 		positions.add(str(x) + ',' + str(y))
-
+	f.close()
 	print len(positions)
 
 if __name__ == '__main__':

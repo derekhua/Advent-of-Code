@@ -31,7 +31,7 @@ def main():
 			floor += 1
 		elif c == ')':
 			floor -= 1
-	f.close
+	f.close()
 	print floor
 
 

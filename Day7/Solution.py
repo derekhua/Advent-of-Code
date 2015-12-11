@@ -76,6 +76,7 @@ def find_value(values, name, target):
 def main():
   f = open('input.txt', 'r')
   values = dict()
+  f.close()
   print find_value(values, 'input.txt', 'a')
 
 

@@ -47,6 +47,7 @@ def main():
   for line in f:
     if has_three_vowels(line) and has_double_letter(line) and not_contains_strings(line):
       nice += 1
+  f.close()
   print nice
 
 if __name__ == '__main__':

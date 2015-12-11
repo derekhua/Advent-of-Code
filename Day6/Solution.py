@@ -55,7 +55,7 @@ def main():
     for i in arr:
       if i == 1:
         count += 1
-
+  f.close()
   print count
 
 if __name__ == '__main__':
