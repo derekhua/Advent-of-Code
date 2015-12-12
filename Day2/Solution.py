@@ -29,12 +29,10 @@ For example:
 
     Both parts of this puzzle are complete! They provide two gold stars: **
 '''
-
 f = open('input.txt', 'r')
-lines = f.readlines()
 sqft = 0
 ribbon = 0
-for line in lines:
+for line in f:
   splitted = list(map(int, line.split('x')))	# int list
   sqft += 2*splitted[0]*splitted[1] + 2*splitted[1]*splitted[2] + 2*splitted[0]*splitted[2]
   sqft += min(splitted[0]*splitted[1], splitted[1]*splitted[2], splitted[0]*splitted[2])
