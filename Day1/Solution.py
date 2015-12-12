@@ -38,7 +38,6 @@ Your puzzle answer was 1795.
 
 Both parts of this puzzle are complete! They provide two gold stars: **
 '''
-
 with open('input.txt', 'r') as f:
   floor = 0
   position = 1
@@ -54,4 +53,3 @@ with open('input.txt', 'r') as f:
     position += 1
 f.close()
 print 'ending floor: ' + str(floor)
-
