@@ -81,12 +81,12 @@ def find_value(values, lines, target):
           values[target] = find_value(values, lines, leftlist[0])
         return values[target]
 
-f = open('input.txt', 'r')
-lines = f.readlines()
-values = dict()
-a = find_value(values, lines, 'a')
-print a
-values = dict()
-values['b'] = a
-print find_value(values, lines, 'a')
+with open('input.txt', 'r') as f:
+  lines = f.readlines()
+  values = dict()
+  a = find_value(values, lines, 'a')
+  print a
+  values = dict()
+  values['b'] = a
+  print find_value(values, lines, 'a')
 f.close()

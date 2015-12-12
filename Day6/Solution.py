@@ -40,41 +40,39 @@ For example:
 
     Both parts of this puzzle are complete! They provide two gold stars: **
 '''
+with open('input.txt', 'r') as f:
+  lights = [[0 for x in range(1000)] for x in range(1000)]
+  lights2 = [[0 for x in range(1000)] for x in range(1000)]
 
-f = open('input.txt', 'r')
-lights = [[0 for x in range(1000)] for x in range(1000)]
-lights2 = [[0 for x in range(1000)] for x in range(1000)]
+  for line in f:
+    splitted = line.split()
+    if 'toggle' in line:
+      pair1 = splitted[1]
+      pair2 = splitted[3]
+    else:
+      pair1 = splitted[2]
+      pair2 = splitted[4]
 
-for line in f:
-  splitted = line.split()
-  if 'toggle' in line:
-    pair1 = splitted[1]
-    pair2 = splitted[3]
-  else:
-    pair1 = splitted[2]
-    pair2 = splitted[4]
+    x1 = int(pair1.split(',')[0])
+    y1 = int(pair1.split(',')[1])
+    x2 = int(pair2.split(',')[0])
+    y2 = int(pair2.split(',')[1])
 
-  x1 = int(pair1.split(',')[0])
-  y1 = int(pair1.split(',')[1])
-  x2 = int(pair2.split(',')[0])
-  y2 = int(pair2.split(',')[1])
-
-  if 'toggle' in line:
-    for x in xrange(x1, x2+1):
-      for y in xrange(y1, y2+1):
-        lights[y][x] = lights[y][x] ^ 1
-        lights2[y][x] += 2
-  elif 'turn on' in line:
-    for x in xrange(x1, x2+1):
-      for y in xrange(y1, y2+1):
-        lights[y][x] = 1
-        lights2[y][x] += 1
-  elif 'turn off' in line:
-    for x in xrange(x1, x2+1):
-      for y in xrange(y1, y2+1):
-        lights[y][x] = 0
-        if lights2[y][x] != 0: lights2[y][x] -= 1
-
+    if 'toggle' in line:
+      for x in xrange(x1, x2+1):
+        for y in xrange(y1, y2+1):
+          lights[y][x] = lights[y][x] ^ 1
+          lights2[y][x] += 2
+    elif 'turn on' in line:
+      for x in xrange(x1, x2+1):
+        for y in xrange(y1, y2+1):
+          lights[y][x] = 1
+          lights2[y][x] += 1
+    elif 'turn off' in line:
+      for x in xrange(x1, x2+1):
+        for y in xrange(y1, y2+1):
+          lights[y][x] = 0
+          if lights2[y][x] != 0: lights2[y][x] -= 1
 f.close()
 print sum(map(sum, lights))
 print sum(map(sum, lights2))

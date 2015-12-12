@@ -41,26 +41,24 @@ A nice string is one with all of the following properties:
 '''
 import re
 
-f = open('input.txt', 'r')
-'''
-rules = [
-        lambda string: sum(1 for c in string if c in "aeiou") >= 3,               # string must contain at least 3 vowels
-        lambda string: any(c == string[i+1] for i, c in enumerate(string[:-1])),  # string must contain at least 1 double letter
-        lambda string: all(x not in string for x in ("ab", "cd", "pq", "xy")),    # string must not contain any of these pairs
-        ]
-count = 0
-for line in f.readlines():
-  if all(rule(line) for rule in rules): count += 1
-print count
-'''
-strings = [x.strip() for x in f.readlines()]
+with open('input.txt', 'r') as f:
+  '''
+  rules = [
+          lambda string: sum(1 for c in string if c in "aeiou") >= 3,               # string must contain at least 3 vowels
+          lambda string: any(c == string[i+1] for i, c in enumerate(string[:-1])),  # string must contain at least 1 double letter
+          lambda string: all(x not in string for x in ("ab", "cd", "pq", "xy")),    # string must not contain any of these pairs
+          ]
+  count = 0
+  for line in f.readlines():
+    if all(rule(line) for rule in rules): count += 1
+  print count
+  '''
+  strings = [x.strip() for x in f.readlines()]
 
-# Part 1
-print(len([s for s in strings if (re.search(r'([aeiou].*){3,}', s) and
-                                  re.search(r'(.)\1', s) and not
-                                  re.search(r'ab|cd|pq|xy', s))]))
-
-# Part 2
-print(len([s for s in strings if (re.search(r'(..).*\1', s) and re.search(r'(.).\1', s))]))
-
+  # Part 1
+  print(len([s for s in strings if (re.search(r'([aeiou].*){3,}', s) and
+                                    re.search(r'(.)\1', s) and not
+                                    re.search(r'ab|cd|pq|xy', s))]))
+  # Part 2
+  print(len([s for s in strings if (re.search(r'(..).*\1', s) and re.search(r'(.).\1', s))]))
 f.close()

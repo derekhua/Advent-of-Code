@@ -48,4 +48,3 @@ with open('input.txt', 'r') as f:
 f.close()
 print literal_count - memory_count
 print otherway_count - literal_count
-

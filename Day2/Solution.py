@@ -29,15 +29,15 @@ For example:
 
     Both parts of this puzzle are complete! They provide two gold stars: **
 '''
-f = open('input.txt', 'r')
-sqft = 0
-ribbon = 0
-for line in f:
-  splitted = list(map(int, line.split('x')))	# int list
-  sqft += 2*splitted[0]*splitted[1] + 2*splitted[1]*splitted[2] + 2*splitted[0]*splitted[2]
-  sqft += min(splitted[0]*splitted[1], splitted[1]*splitted[2], splitted[0]*splitted[2])
-  ribbon += splitted[0]*splitted[1]*splitted[2]
-  ribbon += min(2*splitted[0] + 2*splitted[1] , 2*splitted[1] + 2*splitted[2], 2*splitted[0] + 2*splitted[2])
+with open('input.txt', 'r') as f:
+  sqft = 0
+  ribbon = 0
+  for line in f:
+    splitted = list(map(int, line.split('x')))	# int list
+    sqft += 2*splitted[0]*splitted[1] + 2*splitted[1]*splitted[2] + 2*splitted[0]*splitted[2]
+    sqft += min(splitted[0]*splitted[1], splitted[1]*splitted[2], splitted[0]*splitted[2])
+    ribbon += splitted[0]*splitted[1]*splitted[2]
+    ribbon += min(2*splitted[0] + 2*splitted[1] , 2*splitted[1] + 2*splitted[2], 2*splitted[0] + 2*splitted[2])
 f.close()
 print 'sqft needed: ' + str(sqft)
 print 'ribbon needed: ' + str(ribbon)

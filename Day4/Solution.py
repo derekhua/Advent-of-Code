@@ -20,7 +20,6 @@ For example:
   Both parts of this puzzle are complete! They provide two gold stars: **
 '''
 import hashlib
-
 puzzle_input = 'yzbqklnj'
 num = 1
 five_found = False
@@ -36,4 +35,3 @@ while not (five_found and six_found):
     print 'number for 6 zeros: ' + str(num)
     six_found = True
   num += 1
-
