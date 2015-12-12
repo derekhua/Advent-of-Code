@@ -39,16 +39,15 @@ For example:
 '''
 
 # values is dict
-# name is file name
+# lines is file lines
+# target is string
 # returns int
-def find_value(values, name, target):
-  print target
+def find_value(values, lines, target):
   if target.isdigit():
     return int(target)
   if target in values:
     return values[target]
-  f = open(name, 'r')
-  for line in f:
+  for line in lines:
     splitted = line.split('->')
     # Found target
     if splitted[1].strip() == target:
@@ -57,28 +56,27 @@ def find_value(values, name, target):
         values[target] = int(left)
         return int(left)
       else:
-        leftlist = left.split()        
-        print leftlist
+        leftlist = left.split()
         if 'NOT' in left:
-          values[target] = ~find_value(values, name, leftlist[1])          
+          values[target] = ~find_value(values, lines, leftlist[1])
         elif 'OR' in left:
-          values[target] = find_value(values, name, leftlist[0]) | find_value(values, name, leftlist[2])
+          values[target] = find_value(values, lines, leftlist[0]) | find_value(values, lines, leftlist[2])
         elif 'AND' in left:
-          values[target] = find_value(values, name, leftlist[0]) & find_value(values, name, leftlist[2])
+          values[target] = find_value(values, lines, leftlist[0]) & find_value(values, lines, leftlist[2])
         elif 'LSHIFT' in left:
-          values[target] = find_value(values, name, leftlist[0]) << find_value(values, name, leftlist[2])
+          values[target] = find_value(values, lines, leftlist[0]) << find_value(values, lines, leftlist[2])
         elif 'RSHIFT' in left:
-          values[target] = find_value(values, name, leftlist[0]) >> find_value(values, name, leftlist[2])
+          values[target] = find_value(values, lines, leftlist[0]) >> find_value(values, lines, leftlist[2])
         else:
-          values[target] = find_value(values, name, leftlist[0])      
+          values[target] = find_value(values, lines, leftlist[0])
         return values[target]
 
-def main():
-  f = open('input.txt', 'r')
-  values = dict()
-  f.close()
-  print find_value(values, 'input.txt', 'a')
-
-
-if __name__ == '__main__':
-  main()
+f = open('input.txt', 'r')
+lines = f.readlines()
+values = dict()
+a = find_value(values, lines, 'a')
+print a
+values = dict()
+values['b'] = a
+print find_value(values, lines, 'a')
+f.close()
