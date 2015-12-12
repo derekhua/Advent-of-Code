@@ -39,19 +39,19 @@ Your puzzle answer was 1795.
 Both parts of this puzzle are complete! They provide two gold stars: **
 '''
 
-f = open('input.txt', 'r')
-floor = 0
-position = 1
-firstneg = False
-for c in f.read():
-  if c == '(':
-    floor += 1
-  elif c == ')':
-    floor -= 1
-  if not firstneg and floor == -1:
-    print 'first basement visit position: ' + str(position)
-    firstneg = True
-  position += 1
+with open('input.txt', 'r') as f:
+  floor = 0
+  position = 1
+  firstneg = False
+  for c in f.read():
+    if c == '(':
+      floor += 1
+    elif c == ')':
+      floor -= 1
+    if not firstneg and floor == -1:
+      print 'first basement visit position: ' + str(position)
+      firstneg = True
+    position += 1
 f.close()
 print 'ending floor: ' + str(floor)
 
