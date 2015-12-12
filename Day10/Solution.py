@@ -14,7 +14,17 @@ For example:
   111221 becomes 312211 (three 1s, two 2s, and one 1).
   Starting with the digits in your puzzle input, apply this process 40 times. What is the length of the result?
 
-  Your puzzle input is 1113122113.
+  Your puzzle answer was 360154.
+
+  --- Part Two ---
+
+  Neat, right? You might also enjoy hearing John Conway talking about this sequence (that's Conway of Conway's Game of Life fame).
+
+  Now, starting again with the digits in your puzzle input, apply this process 50 times. What is the length of the new result?
+
+  Your puzzle answer was 5103798.
+
+  Both parts of this puzzle are complete! They provide two gold stars: **
 '''
 # num_str is a string
 # count is a in
@@ -35,7 +45,5 @@ def look_and_say(num_str, counts):
   builder+= str(count) + candidate
   return look_and_say(builder, counts-1)
 
-def main():
-  print len(look_and_say('1113122113', 40))
-if __name__ == '__main__':
-  main()
+print '40 times: ' + str(len(look_and_say('1113122113', 40)))
+print '50 times: ' + str(len(look_and_say('1113122113', 50)))
