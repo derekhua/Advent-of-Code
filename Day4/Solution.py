@@ -9,21 +9,31 @@ For example:
 
   If your secret key is abcdef, the answer is 609043, because the MD5 hash of abcdef609043 starts with five zeroes (000001dbbfa...), and it is the lowest such number to do so.
   If your secret key is pqrstuv, the lowest number it combines with to make an MD5 hash starting with five zeroes is 1048970; that is, the MD5 hash of pqrstuv1048970 looks like 000006136ef....
+  Your puzzle answer was 282749.
 
+  --- Part Two ---
+
+  Now find one that starts with six zeroes.
+
+  Your puzzle answer was 9962624.
+
+  Both parts of this puzzle are complete! They provide two gold stars: **
 '''
 import hashlib
 
-def main():
-  puzzle_input = 'yzbqklnj'
-  num = 1
-  while True:
-    m = hashlib.md5()
-    s = puzzle_input + str(num)
-    m.update(s)
-    if m.hexdigest()[:5] == '00000':
-      print num
-      break
-    num += 1
+puzzle_input = 'yzbqklnj'
+num = 1
+five_found = False
+six_found = False
+while not (five_found and six_found):
+  m = hashlib.md5()
+  s = puzzle_input + str(num)
+  m.update(s)
+  if not five_found and m.hexdigest()[:5] == '00000':
+    print 'number for 5 zeros: ' + str(num)
+    five_found = True
+  if not six_found and m.hexdigest()[:6] == '000000':
+    print 'number for 6 zeros: ' + str(num)
+    six_found = True
+  num += 1
 
-if __name__ == '__main__':
-  main()
